@@ -19,6 +19,37 @@ export interface IUser{
     cartItems:{
         product:mongoose.Types.ObjectId,
         quantity:number
-    }[]
+    }[],
+    shippingAddress:string
 }
 
+export interface IOrder{
+    _id?: string;
+    user:mongoose.Types.ObjectId,
+    products:{
+        product:mongoose.Types.ObjectId,
+        quantity:number
+
+    }[],
+     shippingAddress: string;
+
+  totalAmount: number;
+
+  paymentId: string;
+
+  razorpayOrderId: string;
+
+   paymentStatus: "Paid" | "Pending" | "Failed";
+
+  orderStatus:
+    | "Confirmed"
+    | "Processing"
+    | "Shipped"
+    | "Delivered"
+    | "Cancelled";
+
+  createdAt?: Date;
+  updatedAt?: Date;
+
+
+}

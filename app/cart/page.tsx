@@ -1,16 +1,15 @@
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+
 import { Field, FieldDescription, FieldTitle } from '@/components/ui/field'
 import { connectDB } from '@/lib/db'
 import { IProduct } from '@/models/types'
 import User from '@/models/user.model'
 import { auth } from '@clerk/nextjs/server'
-import React from 'react'
+
 import Image from 'next/image'
 import { Badge } from '@/components/ui/badge'
-import { addtocartfunc } from '@/lib/actions/addtocart'
+
 import Cartitem from '@/components/cartitem'
-import Carttotal from '@/components/carttotal'
+
 import Ordersummary from '@/components/ordersummary'
 
 

@@ -3,6 +3,7 @@ import { connectDB } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { currentUser } from "@clerk/nextjs/server";
 import User from "@/models/user.model";
+import Product from "@/models/product.model";
 
 export async function POST(){
 
@@ -33,7 +34,9 @@ export async function POST(){
         })
     }
 
-    return NextResponse.json(user)
+   
+
+    return NextResponse.json({user:JSON.parse(JSON.stringify(user)),success:true})
 
    
 

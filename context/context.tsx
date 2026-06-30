@@ -6,7 +6,7 @@ import { createContext } from 'react'
 import axios from 'axios'
 import { Dispatch, SetStateAction } from "react";
 import { getCartCount } from '@/components/cartfunction'
-import { IProduct } from '@/models/types'
+import { IProduct, IUser } from '@/models/types'
 
 type CartItem = {
   product: IProduct;
@@ -19,7 +19,9 @@ type contextType={
     count:number,
     setcount: Dispatch<SetStateAction<number>>,
     cart:CartItem[],
-    setcart:Dispatch<SetStateAction<CartItem[]>>
+    setcart:Dispatch<SetStateAction<CartItem[]>>,
+    userdata:IUser | null,
+    setuserdata: Dispatch<SetStateAction<IUser | null>>;
 }
 
 export const UserContext=createContext<contextType | null>(null)
@@ -30,14 +32,18 @@ export default function context({children}:{children:React.ReactNode}) {
     const {user,isLoaded,isSignedIn}=useUser()
 const [cart,setcart]=useState<CartItem[]>([])
 
-
+const [userdata,setuserdata]=useState<IUser | null>(null)
 
   useEffect(() => {
 
     console.log("Effect", { isLoaded, isSignedIn });
   async function syncUser() {
     try {
-      await axios.post("/api/user/syncuser");
+      const res=await axios.post("/api/user/syncuser");
+      if(res.data.success){
+          setuserdata(res.data.user)
+          
+      }
     } catch (err) {
       console.error(err);
     }
@@ -61,7 +67,8 @@ useEffect(()=>{
   getcount()
 },[])
 
-//cart context
+const [product,setproduct]=useState<IProduct[]>([])
+
 
 
 
@@ -75,7 +82,8 @@ let value={
     count,
     setcount,
     cart,
-    setcart
+    setcart,
+    userdata,setuserdata
 
 }
 

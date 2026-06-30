@@ -31,7 +31,12 @@ const userSchema=new mongoose.Schema<IUser>({
         }
             
         }
-    ]
+    ],
+    shippingAddress:{
+        type:String,
+        default:""
+
+    }
 },{minimize:false})
 
 
