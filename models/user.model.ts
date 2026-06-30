@@ -1,13 +1,7 @@
 import mongoose from 'mongoose'
 
 
-interface IUser{
-    clerkId:string,
-    name:string,
-    email:string,
-    cartItems:mongoose.Types.ObjectId[]
-}
-
+import {IUser} from './types'
 
 
 const userSchema=new mongoose.Schema<IUser>({
@@ -26,8 +20,15 @@ const userSchema=new mongoose.Schema<IUser>({
     },
     cartItems:[
         {
+            product:{
             type:mongoose.Schema.Types.ObjectId,
             ref:"product",
+        },
+        quantity:{
+            type:Number,
+            default:1,
+            min:1
+        }
             
         }
     ]

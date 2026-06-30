@@ -1,15 +1,7 @@
 import mongoose from 'mongoose'
 
+import {IProduct} from './types'
 
-interface IProduct{
-    userId:mongoose.Types.ObjectId,
-    name:string,
-    description:string,
-   price:number,
-   offerPrice:number,
-   category?:string,
-   image:string
-}
 
 
 
@@ -17,7 +9,7 @@ const userSchema=new mongoose.Schema<IProduct>({
     userId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"user",
-        required:true
+        
     },
     name:{
         type:String,
@@ -36,8 +28,8 @@ const userSchema=new mongoose.Schema<IProduct>({
         default:0
     },
     image:{
-        type:String,
-        default:""
+        type:[String],
+        default:[]
         
     },
     category:{

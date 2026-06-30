@@ -7,7 +7,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Context from "@/context/context";
 
 
-
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const geistSans = Geist({
@@ -25,11 +24,16 @@ export const metadata: Metadata = {
   description: "an ecom app",
 };
 
-export default function RootLayout({
+export default  function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
+  
+
+
   return (
     <ClerkProvider>
     <html
@@ -37,9 +41,9 @@ export default function RootLayout({
       className={cn("h-full", "antialiased", inter.variable)}
     >
       
-      <body className={`min-h-full w-[80%] mx-auto flex flex-col`}>
+      <body className={`h-screen w-[80%] mx-auto `}>
         <Context>
-        <Navbar/>
+        <Navbar />
         
         {children}
          </Context>
