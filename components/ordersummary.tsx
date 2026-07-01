@@ -109,9 +109,9 @@ console.log(address)
         Shipping
       </h2>
 <div className='flex flex-col gap-3'>
-<p className="text-right text-sm text-muted-foreground">
+<div className="text-right text-sm text-muted-foreground">
        {!userdata?.shippingAddress ? <p> Free shipping. Shipping options will be updated during checkout.</p> : <>{userdata?.shippingAddress}</>}
-      </p>
+      </div>
 
      <span className='flex w-full  items-center justify-end p-1  gap-4'><Car/> 
     <Dialog>

@@ -8,7 +8,8 @@ export interface IProduct{
    price:number,
    offerPrice:number,
    category?:string,
-   image:string[]
+   image:string[],
+   sellerId?:mongoose.Types.ObjectId
 }
 
 export interface IUser{
@@ -20,7 +21,8 @@ export interface IUser{
         product:mongoose.Types.ObjectId,
         quantity:number
     }[],
-    shippingAddress:string
+    shippingAddress:string,
+    role?:"user" | "admin" | "seller"
 }
 
 export interface IOrder{

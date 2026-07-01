@@ -9,13 +9,13 @@ import { useRouter } from 'next/navigation'
 import { UserContext } from '@/context/context'
 import { CartIcon } from '@/assets/assets'
 import { Input } from './ui/input'
-
+import { Badge } from './ui/badge'
 
 
 const Navbar = () => {
 const router=useRouter()
   const {openSignIn}=useClerk()
-  const {user}=useContext(UserContext)!
+  const {user,userdata}=useContext(UserContext)!
 const {count}=useContext(UserContext)!
   console.log(user)
 
@@ -35,10 +35,12 @@ const {count}=useContext(UserContext)!
         <div className='w-[70%]  '>
 
           <ul className='w-full h-full flex gap-15 justify-end  items-center p-4'>
-            <li className='cursor-pointer hover:underline  ' onClick={()=>router.push('/')}>Products</li>
-            <li className='cursor-pointer hover:underline'>offers</li>
-            <li className='cursor-pointer hover:underline'>about us</li>
-             <li className='cursor-pointer hover:underline' onClick={()=>router.push('/order')}>My Orders</li>
+            <Badge className='cursor-pointer hover:underline h-7 w-fit ' onClick={()=>router.push('/')}>Products</Badge>
+            <Badge className='cursor-pointer hover:underline h-7'>offers</Badge>
+            <Badge className='cursor-pointer hover:underline h-7'>about us</Badge>
+             <Badge className='cursor-pointer hover:underline h-7' onClick={()=>router.push('/order')}>My Orders</Badge>
+             {userdata?.role==="seller" && <Badge className='cursor-pointer hover:underline h-7' onClick={()=>router.push('/dashboard/seller')}>Seller Dashboard</Badge>}
+              {userdata?.role==="admin" && <Badge className='cursor-pointer hover:underline h-7' onClick={()=>router.push('/dashboard/admin')}>Admin Dashboard</Badge>}
           </ul>
 
         </div>

@@ -16,7 +16,7 @@ const Addtocart = (props:Addtocartinterface) => {
     const [quantity,setquantity]=useState<number>(props.initialQuantity)
 const [loading, setLoading] = useState(false);
 
-const {count,setcount}=useContext(UserContext)!
+const {count,setcount,cart,setcart}=useContext(UserContext)!
 
 
     async function additem(){
@@ -28,6 +28,7 @@ const {count,setcount}=useContext(UserContext)!
         if(res?.success){
           setquantity(res.quantity ?? 0)
           setcount(res.total ?? 0)
+          setcart(res.cartitem)
         }
 
 
@@ -50,6 +51,7 @@ const {count,setcount}=useContext(UserContext)!
         if(res?.success){
           setquantity(res.quantity ?? 0)
           setcount(res.total ?? 0)
+           setcart(res.cartitem)
         }
 
 

@@ -36,7 +36,11 @@ const userSchema=new mongoose.Schema<IProduct>({
         type:String,
         
     },
-    
+    sellerId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"user",
+        
+    }
 },{minimize:false})
 
 

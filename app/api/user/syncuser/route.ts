@@ -25,10 +25,11 @@ export async function POST(){
 
     if(!user){
         const clerkuser=await currentUser()
-
+console.log(clerkuser);
+console.log(clerkuser?.firstName);
         user=await User.create({
             clerkId:clerkuser!.id,
-            name:clerkuser!.firstName,
+            name:clerkuser!.firstName || clerkuser!.lastName || clerkuser!.emailAddresses[0].emailAddress.split('@')[0],
             email:clerkuser!.emailAddresses[0].emailAddress,
 
         })

@@ -16,6 +16,12 @@ export async function getCartCount() {
     };
 
   const user = await User.findOne({ clerkId: userId });
+  if(!user){
+    return{
+      cart:[],
+      count:0
+    }
+  }
   await user.populate("cartItems.product")
 
   return {
